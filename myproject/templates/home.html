@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col text-center">
+        <a href="{% url 'new_note' %}" id="testbutton" class="btn btn-success" role="button">Create new note</a>
+    </div>
+</div>
+<br>
+
+{% if notes|length != 0 %}
+    <div class="row">
+        {% for note in notes %}
+            {% if note.created_by == user %}
+                <div id="notes" class="col-md-auto">
+                    <div id="columns-style" class="p-3 zero-bottom-padding border bg-light rel_pos">
+                        <a href="{% url 'edit_note' note.pk %}"><h5 style="color: black"><b>{{ note.subject }}</b></h5></a>
+                        {{ note.description|safe }}
+                        <div class="button">
+                            <a href="{% url 'delete' note.pk %}" class="btn"><i class="fa fa-trash red-color">  Delete</i></a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% else %}
+    <h4 class="text-center">There are no notes in your library.</h4>
+{% endif %}
+
+{% endblock content %}
+
+
