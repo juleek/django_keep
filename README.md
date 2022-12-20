@@ -4,3 +4,4 @@ The final result:
 ![Photo](account.png)
 ![Photo](login.png)
 ![Photo](create_acc.png)
+![Photo](new_note.png)
